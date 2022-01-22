@@ -7,7 +7,8 @@
     "clean": "rimraf ./dist",
     "build": "tsc -b src",
     "compile": "yarn clean && yarn build",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "pm2:start": "cross-env NODE_ENV=pm2 pm2 start src/index.ts --name discord-api-status --watch"
   },
   "keywords": [
     "discord",
@@ -27,7 +28,10 @@
   },
   "devDependencies": {
     "@types/luxon": "^2.0.8",
-    "rimraf": "^3.0.2"
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
   },
   "git": {
     "type": "git",

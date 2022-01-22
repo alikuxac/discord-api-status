@@ -30,6 +30,7 @@ import { config } from 'dotenv';
 import db from 'quick.db';
 import Agenda from 'agenda';
 import { connect } from 'mongoose';
+import { exec } from 'child_process';
 import {
     EMBED_COLOR_GREEN,
     EMBED_COLOR_RED,
@@ -165,15 +166,34 @@ agenda.define('check update', { priority: 10 }, async () => {
     await check();
 });
 
-agenda.define('add data to mongo', { priority: 5 }, async () => {
+agenda.define('add data to mongo', async () => {
     await addDataToMongo();
+});
+
+agenda.define('git pull', () => {
+    exec('git pull', (error, stdout, stderr) => {
+        const response = (stdout || stderr);
+        if (!error) {
+            if (!response.includes('Already up to date.')) {
+                console.log(response);
+                setTimeout(() => {
+                    process.exit();
+                }, 1000);
+            }
+        }
+    })
 });
 
 (async function () {
     await check();
-    connect(process.env.MONGO_URL!, { dbName: 'incidents' });
+    await connect(process.env.MONGO_URL!, { dbName: 'incidents' });
     await agenda.start();
 
     await agenda.every('5 minutes', 'check update');
     await agenda.every('1 day', 'add data to mongo');
+
+    if (process.env.NODE_ENV === 'pm2') {
+        await agenda.every('30 seconds', 'git pull');
+    }
+
 })();
