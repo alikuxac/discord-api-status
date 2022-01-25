@@ -8,7 +8,7 @@
     "build": "tsc -b src",
     "compile": "yarn clean && yarn build",
     "start": "node dist/index.js",
-    "pm2:start": "cross-env NODE_ENV=pm2 pm2 start src/index.ts --name discord-api-status --watch"
+    "pm2:start": "yarn compile && npx pm2 start src/index.ts --name discord-api-status --watch"
   },
   "keywords": [
     "discord",
@@ -19,15 +19,16 @@
   "license": "MIT",
   "dependencies": {
     "agenda": "^4.2.1",
-    "axios": "^0.24.0",
-    "discord.js": "^13.5.0",
-    "dotenv": "^10.0.0",
+    "axios": "^0.25.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^14.3.0",
     "luxon": "^2.3.0",
-    "mongoose": "^6.1.7",
+    "mongoose": "^6.1.8",
     "quick.db": "^7.1.3"
   },
   "devDependencies": {
     "@types/luxon": "^2.0.8",
+    "@types/node": "16",
     "cross-env": "^7.0.3",
     "rimraf": "^3.0.2",
     "ts-node": "^10.4.0",

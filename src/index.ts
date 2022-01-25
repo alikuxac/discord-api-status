@@ -191,9 +191,6 @@ agenda.define('git pull', () => {
 
     await agenda.every('5 minutes', 'check update');
     await agenda.every('1 day', 'add data to mongo');
-
-    if (process.env.NODE_ENV === 'pm2') {
-        await agenda.every('30 seconds', 'git pull');
-    }
+    await agenda.every('30 seconds', 'git pull');
 
 })();
