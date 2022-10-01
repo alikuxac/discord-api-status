@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/luxon": "2.0.8",
-    "@types/node": "16.11.21",
+    "@types/node": "16.11.62",
     "cross-env": "7.0.3",
     "rimraf": "3.0.2",
     "ts-node": "10.4.0",
