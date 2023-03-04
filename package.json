@@ -23,7 +23,7 @@
     "discord.js": "^14.0.0",
     "dotenv": "^16.0.0",
     "luxon": "^3.0.0",
-    "mongoose": "^6.1.8",
+    "mongoose": "^7.0.0",
     "quick.db": "^9.0.0"
   },
   "devDependencies": {
