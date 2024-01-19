@@ -27,7 +27,7 @@
     "quick.db": "^9.0.0"
   },
   "devDependencies": {
-    "@types/luxon": "3.2.0",
+    "@types/luxon": "3.4.2",
     "@types/node": "18.14.0",
     "cross-env": "7.0.3",
     "rimraf": "3.0.2",
